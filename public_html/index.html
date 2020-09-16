@@ -20,16 +20,16 @@ and open the template in the editor.
     <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix;' vr-mode-ui='enabled: false' >   
    
         <a-assets>
-            <a-asset-item id='scene' src='scene.gltf'></a-asset-item>
+            <a-asset-item id="scene" src="scene.gltf"></a-asset-item>
         </a-assets>
-        <a-marker preset='custom' type='pattern' url='domo.patt'>
+        <a-marker preset="custom" type="pattern" url="domo.patt">
             <!--<a-gltf-model src='#scene'></a-gltf-model> -->
            <a-entity gltf-model-next="src: url(scene.gltf)"></a-entity>
 
         </a-marker>
 
 
-        <a-marker preset='custom' type='pattern' url='pattern-cmbus.patt'>
+        <a-marker preset="custom" type="pattern" url="pattern-cmbus.patt">
             <video id="mivideo" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted src="hdl.mp4"></video>
             <a-video src="#mivideo" position="0 0 0" rotation="270 0 0" ></a-video>
 
