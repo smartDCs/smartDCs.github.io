@@ -17,13 +17,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
     <body >
-    <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' vr-mode-ui='enabled: false' >   
+    <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix;' vr-mode-ui='enabled: false' >   
    
         <a-assets>
-            <a-asset-item id="scene" src="scene.gltf"></a-asset-item>
+            <a-asset-item id='scene' src='scene.gltf'></a-asset-item>
         </a-assets>
         <a-marker preset='custom' type='pattern' url='domo.patt'>
-            <a-gltf-model src="#scene" position='0 0 0'></a-gltf-model>
+            <a-gltf-model src='#scene'></a-gltf-model>
            
         </a-marker>
 
