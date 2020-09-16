@@ -14,10 +14,19 @@ and open the template in the editor.
         <!-- aframe-keyboard-controls.js Permite todas las accion utilizando el Teclado --> 
         <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
         <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
     <body >
-    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false" width="100%">   
+    <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' vr-mode-ui='enabled: false' >   
+   
+        <a-assets>
+            <a-asset-item id="scene" src="scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker preset='custom' type='pattern' url='domo.patt'>
+            <a-gltf-model src="#scene" position='0 0 0'></a-gltf-model>
+           
+        </a-marker>
+
 
         <a-marker preset='custom' type='pattern' url='pattern-cmbus.patt'>
             <video id="mivideo" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted src="hdl.mp4"></video>
@@ -28,7 +37,7 @@ and open the template in the editor.
                 m.addEventListener("markerFound", (e) => {
                     console.log("found")
                     var v = document.querySelector('#mivideo').play();
-                     var v = document.querySelector('#mivideo').muted = false;
+                    var v = document.querySelector('#mivideo').muted = false;
                 })
                 m.addEventListener("markerLost", (e) => {
                     console.log("lost")
@@ -36,15 +45,23 @@ and open the template in the editor.
 
                 })
 
-/*
-                document.querySelector("button").addEventListener("click", (e) => {
-                    console.log("Activar Sonido")
-                    var v = document.querySelector('#mivideo').muted = false;
-                })*/
+                /*
+                 document.querySelector("button").addEventListener("click", (e) => {
+                 console.log("Activar Sonido")
+                 var v = document.querySelector('#mivideo').muted = false;
+                 })*/
             </script>
 
-        </a-marker>
+        </a-marker> 
+
+ 
         <a-entity camera></a-entity>
+        <!--
+<canvas class="a-canvas" data-aframe-canvas="true" width="853" height="640"></canvas>
+<div class="a-loader-title" style="display: none;"></div>
+<a-entity light="" data-aframe-default-light="" aframe-injected=""></a-entity>
+<a-entity light="" position="" data-aframe-default-light="" aframe-injected=""></a-entity>
+        -->
     </a-scene>
 </body>
 </html>
