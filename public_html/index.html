@@ -14,17 +14,20 @@ and open the template in the editor.
         <!-- aframe-keyboard-controls.js Permite todas las accion utilizando el Teclado --> 
         <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
         <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
     <body >
     <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix;' vr-mode-ui='enabled: false' >   
-   
-        <a-assets>
-            <a-asset-item id="scene" src="scene.gltf"></a-asset-item>
-        </a-assets>
+
+
         <a-marker preset="custom" type="pattern" url="domo.patt">
-            <!--<a-gltf-model src='#scene'></a-gltf-model> -->
-           <a-entity gltf-model-next="src: url(E:/apps/AR_app/public_html/scene.gltf)"></a-entity>
+            <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:green;'>
+                <a-torus-knot radius='0.26' radius-tubular='0.05'>
+                    <a-animation attribute="rotation" to="360 0 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
+                </a-torus-knot>
+            </a-box>
+
 
         </a-marker>
 
@@ -55,7 +58,7 @@ and open the template in the editor.
 
         </a-marker> 
 
- 
+
         <a-entity camera></a-entity>
         <!--
 <canvas class="a-canvas" data-aframe-canvas="true" width="853" height="640"></canvas>
