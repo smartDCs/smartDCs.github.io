@@ -14,14 +14,14 @@ and open the template in the editor.
         <!-- aframe-keyboard-controls.js Permite todas las accion utilizando el Teclado --> 
         <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
         <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-       
+       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
-    <body>
+    <body >
     <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">   
 
         <a-marker preset='custom' type='pattern' url='pattern-cmbus.patt'>
             <video id="mivideo" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted src="hdl.mp4"></video>
-            <a-video src="#mivideo" position="0 0 0" rotation="0 0 0" ></a-video>
+            <a-video src="#mivideo" position="0 0 0" rotation="270 0 0" ></a-video>
 
             <script>
                 var m = document.querySelector("a-marker")
