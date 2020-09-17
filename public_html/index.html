@@ -21,7 +21,7 @@ width='100%'
 
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
-                   // this.vid.mute=false;
+                    this.vid.mute=false;
                 }.bind(this));
     
 		marker.addEventListener('markerLost', function() {
@@ -66,7 +66,7 @@ width='100%'
         <a-assets>
             <video src="hdl.mp4"
                 preload="auto" id="vid" response-type="arraybuffer" loop
-                crossorigin webkit-playsinline autoplay playsinline>
+                crossorigin webkit-playsinline autoplay>
             </video>
         </a-assets>
 
