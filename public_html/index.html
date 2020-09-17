@@ -5,130 +5,81 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-           <!--
-        <title>TODO supply a title</title>
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="app/app.js" type="text/javascript"></script>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-      aframe-keyboard-controls.js Permite todas las accion utilizando el Teclado 
-        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
-        <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-       
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
- --> 
- <meta charset="utf-8" />
-   
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realidad Aumentada smartDCs</title>
-    <!-- import aframe and then ar.js with image tracking / location based features -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 
+<script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
+<script>
+    window.onload = function() {
+        AFRAME.registerComponent('videohandler', {
+            init: function () {
+                var marker = this.el;
+
+                this.vid = document.querySelector("#vid");
+
+                marker.addEventListener('markerFound', function () {
+                    this.vid.play();
+                }.bind(this));
     
-
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-        <style>
-            .arjs-loader {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                background-color: rgba(0, 0, 0, 0.8);
-                z-index: 9999;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+		marker.addEventListener('markerLost', function() {
+			this.vid.pause();
+			this.vid.currentTime = 0;
+		}.bind(this));
             }
+        });
+    };
+</script>
 
-            .arjs-loader div {
-                text-align: center;
-                font-size: 1.25em;
-                color: white;
-            }
-        </style>
-  <!--  </head>
-   <!-- <body >
-    <a-scene embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix;' vr-mode-ui='enabled: false' >   
+<style>
+    .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-
-        <a-marker preset="custom" type="pattern" url="domo.patt">
-            <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:green;'>
-                <a-torus-knot radius='0.26' radius-tubular='0.05'>
-                    <a-animation attribute="rotation" to="360 0 0" dur="5000" easing='linear' repeat="indefinite"></a-animation>
-                </a-torus-knot>
-            </a-box>
-
-
-        </a-marker>
-
-
-        <a-marker preset="custom" type="pattern" url="pattern-cmbus.patt">
-            <video id="mivideo" crossOrigin="anonymous" playsinline webkitplaysinline autoplay controls muted src="hdl.mp4"></video>
-            <a-video src="#mivideo" position="0 0 0" rotation="270 0 0" ></a-video>
-
-            <script>
-                var m = document.querySelector("a-marker")
-                m.addEventListener("markerFound", (e) => {
-                    console.log("found")
-                    var v = document.querySelector('#mivideo').play();
-                    var v = document.querySelector('#mivideo').muted = false;
-                })
-                m.addEventListener("markerLost", (e) => {
-                    console.log("lost")
-                    var v = document.querySelector('#mivideo').pause();
-
-                })
-
-                /*
-                 document.querySelector("button").addEventListener("click", (e) => {
-                 console.log("Activar Sonido")
-                 var v = document.querySelector('#mivideo').muted = false;
-                 })*/
-            </script>
-
-        </a-marker> 
-
-
-        <a-entity camera></a-entity>
-        <!--
-<canvas class="a-canvas" data-aframe-canvas="true" width="853" height="640"></canvas>
-<div class="a-loader-title" style="display: none;"></div>
-<a-entity light="" data-aframe-default-light="" aframe-injected=""></a-entity>
-<a-entity light="" position="" data-aframe-default-light="" aframe-injected=""></a-entity>
-        -->
-        <!--
-    </a-scene>
-</body> -->
-        
-     
+    .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+    }
+</style>
 
 <body style='margin : 0px; overflow: hidden;'>
-   <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
+    <div class="arjs-loader">
+        <div>Loading, please wait...</div>
+    </div>
     <a-scene
-        vr-mode-ui='enabled: false;'
-        renderer="logarithmicDepthBuffer: true;"
+        vr-mode-ui="enabled: false;"
+        renderer='antialias: true; alpha: true; precision: mediump;'
         embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
-        <!-- use rawgithack to retrieve the correct url for nft marker (see 'pinball' below) -->
+        <a-assets>
+            <video src="hdl.mp4"
+                preload="auto" id="vid" response-type="arraybuffer" loop
+                crossorigin webkit-playsinline autoplay muted playsinline>
+            </video>
+        </a-assets>
+
         <a-nft
-            type='nft' url='https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex'
-            smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>
-            <a-entity
-                gltf-model='https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf'
-                scale="5 5 5"
-                position="50 -50 0"
-                rotation="0 -180 0"
+            videohandler
+            type='nft' url='https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/data/dataNFT/pinball'
+            smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
+        >
+            <a-video
+                src="#vid"
+                position='50 150 -100'
+                width='300'
+                height='175'
                 >
-            </a-entity>
+            </a-video>
         </a-nft>
 		<a-entity camera></a-entity>
-    </a-scene>
+	</a-scene>
 </body>
 </html>
