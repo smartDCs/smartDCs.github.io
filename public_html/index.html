@@ -7,76 +7,76 @@ width='100%'
                 height='100%'
 -->
 <html>
-    
-  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 
-<script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
-<script>
-    window.onload = function() {
-        AFRAME.registerComponent('videohandler', {
-            init: function () {
-                var marker = this.el;
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 
-                this.vid = document.querySelector("#vid");
+    <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
+    <script>
+        window.onload = function () {
+            AFRAME.registerComponent('videohandler', {
+                init: function () {
+                    var marker = this.el;
 
-                marker.addEventListener('markerFound', function () {
-                    this.vid.play();
-                    this.vid.muted=false;
-                }.bind(this));
-    
-		marker.addEventListener('markerLost', function() {
-			this.vid.pause();
-			this.vid.currentTime = 0;
-		}.bind(this));
-            }
-        });
-        
-         AFRAME.registerComponent('videohandler1', {
-            init: function () {
-                var marker = this.el;
+                    this.vid = document.querySelector("#vid");
 
-                this.vide = document.querySelector("#video");
+                    marker.addEventListener('markerFound', function () {
+                        this.vid.play();
+                        this.vid.muted = false;
+                    }.bind(this));
 
-                marker.addEventListener('markerFound', function () {
-                    this.vide.play();
-                    this.vide.muted=false;
-                }.bind(this));
-    
-		marker.addEventListener('markerLost', function() {
-			this.vide.pause();
-			this.vide.currentTime = 0;
-		}.bind(this));
-            }
-        });
-        
-    };
-</script>
+                    marker.addEventListener('markerLost', function () {
+                        this.vid.pause();
+                        this.vid.currentTime = 0;
+                    }.bind(this));
+                }
+            });
 
-<style>
-    .arjs-loader {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            AFRAME.registerComponent('videohandler1', {
+                init: function () {
+                    var marker = this.el;
 
-    .arjs-loader div {
-        text-align: center;
-        font-size: 1.25em;
-        color: white;
-    }
-</style>
+                    this.vide = document.querySelector("#video");
 
-<body style='margin : 0px; overflow: hidden;'>
-    <div class="arjs-loader">
-        <div>Loading, please wait...</div>
-    </div>
+                    marker.addEventListener('markerFound', function () {
+                        this.vide.play();
+                        this.vide.muted = false;
+                    }.bind(this));
+
+                    marker.addEventListener('markerLost', function () {
+                        this.vide.pause();
+                        this.vide.currentTime = 0;
+                    }.bind(this));
+                }
+            });
+
+        };
+    </script>
+
+    <style>
+        .arjs-loader {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arjs-loader div {
+            text-align: center;
+            font-size: 1.25em;
+            color: white;
+        }
+    </style>
+
+    <body style='margin : 0px; overflow: hidden;'>
+        <div class="arjs-loader">
+            <div>Loading, please wait...</div>
+        </div>
     <a-scene
         vr-mode-ui="enabled: false;"
         renderer='antialias: true; alpha: true; precision: mediump;'
@@ -84,8 +84,8 @@ width='100%'
 
         <a-assets>
             <video src="hdl.mp4"
-                preload="auto" id="vid" response-type="arraybuffer" loop
-                crossorigin webkit-playsinline autoplay muted playsinline>
+                   preload="auto" id="vid" response-type="arraybuffer" loop
+                   crossorigin webkit-playsinline autoplay muted playsinline>
             </video>
         </a-assets>
 
@@ -93,22 +93,22 @@ width='100%'
             videohandler
             type='nft' url='smartDCs.github.io/public_html/image_tracking/casa'
             smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
-        >
+            >
             <a-video
                 src="#vid"
                 position='50 -20 0'
-                 width='100'
+                width='100'
                 height='75'
                 rotation="0 -270 0"
                 >
             </a-video>
         </a-nft>
-        
-        
+
+
         <a-assets>
             <video src="https://cors-anywhere.herokuapp.com/https://www.w3schools.com/html/mov_bbb.mp4"
-                preload="auto" id="video" response-type="arraybuffer" loop
-                crossorigin webkit-playsinline autoplay muted playsinline>
+                   preload="auto" id="video" response-type="arraybuffer" loop
+                   crossorigin webkit-playsinline autoplay muted playsinline>
             </video>
         </a-assets>
 
@@ -116,7 +116,7 @@ width='100%'
             videohandler1
             type='nft' url='smartDCs.github.io/public_html/image_tracking/energia'
             smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
-        >
+            >
             <a-video
                 src="#video"
                 position='50 0 0'
@@ -125,16 +125,33 @@ width='100%'
                 >
             </a-video>
         </a-nft>
-        
-        
-		<a-entity camera></a-entity>
-	</a-scene>
-<script>
-    const sceneEl =document.querySelector('a-scene');
-    sceneEl.addEventListener('loaded',()=>{
-        sceneEl.camera=new THREE.PerspectiveCamera();
-        scene.add(camera);
-    });
+
+
+        <a-nft
+            type="nft"
+            url="smartDCs.github.io/public_html/image_tracking/hikvision"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5">
+            <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+            <a-entity
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+                scale="5 5 5"
+                position="100 100 0"
+                >
+            </a-entity>
+        </a-nft>
+
+
+        <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.addEventListener('loaded', () => {
+            sceneEl.camera = new THREE.PerspectiveCamera();
+            scene.add(camera);
+        });
     </script>
 </body>
 </html>
